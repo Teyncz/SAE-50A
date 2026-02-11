@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Skis  {
+  id    Int     @id @default(autoincrement())
+  brand    Brand    @relation(fields: [brandId], references: [id])
+  brandId  Int
+  saison Saisons @relation(fields: [saisonId], references: [id])
+  saisonId Int
+  model String
+  levelRequired Int
+  description String
+  product_url String
+
+  categories CategoriesOnSkis[]
+  colors ColorsOnSkis[]
+  images SkisImages[]
+
+  specifications Specifications[]
+  skiLengths SkisLengths[]
+}
+
+model Specifications {
+  id Int @id @default(autoincrement())
+  ski Skis @relation(fields: [skiId], references: [id])
+  skiId Int @unique
+  handling Int
+  stability Int
+  pop Int
+  float Int
+  tip_width Float
+  waist_width Float
+  tail_width Float
+}
+
+model SkisLengths {
+  id Int @id @default(autoincrement())
+  ski Skis @relation(fields: [skiId], references: [id])
+  skiId Int
+  length Float
+  radius Float
+  weight Float
+
+  @@map("skis_lengths")
+}
+
+model Saisons {
+  id Int @id @default(autoincrement())
+  label String
+  active Boolean
+
+  skis Skis[]
+}
+
+model SkisImages {
+  id Int @id @default(autoincrement())
+  ski Skis @relation(fields: [skiId], references: [id])
+  skiId Int
+  alt String
+  fileName String
+
+  @@map("skis_images")
+}
+
+model Brand {
+  id  Int @id @default(autoincrement())
+  name String
+
+  skis Skis[]
+}
+
+model Colors {
+  id Int @id @default(autoincrement())
+  name String
+  hexaCode String
+  skis ColorsOnSkis?
+}
+
+model Categories {
+  id Int @id @default(autoincrement())
+  name String
+  skis CategoriesOnSkis[]
+}
+
+model CategoriesOnSkis {
+  category       Categories     @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  ski   Skis @relation(fields: [skiId], references: [id])
+  skiId Int
+
+  @@id([categoryId, skiId])
+  @@map("categories_on_skis")
+}
+
+model ColorsOnSkis {
+  color Colors @relation(fields: [colorId], references: [id])
+  colorId Int @unique
+  ski   Skis @relation(fields: [skiId], references: [id])
+  skiId Int
+
+  @@id([colorId, skiId])
+  @@map("colors_on_skis")
+}

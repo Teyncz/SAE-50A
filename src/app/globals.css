@@ -6,7 +6,37 @@
 }
 
 @theme {
-    --color-black-brown: #130E08
+    --color-black-primary: #181818;
+    --color-gray-primary: #ACACAC;
+    --color-gray-clear: #767676;
+    --color-gray-light: #f1f1f1;
+    --color-black-brown: #130E08;
+    --color-blue-light: #69BFCE;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+input {
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    border: 1px solid var(--color-black-primary);
+    transition: all 0.2s ease;
 }
 
 .switch-toggle {
@@ -23,4 +53,67 @@
     height: calc(100% - 10px);
     width: calc(50% - 5px);
     z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), scale 0.2s ease;;
+}
+
+.switch-toggle.right::after {
+    transform: translateX(100%);
+}
+
+.font-kamerik {
+    font-family: var(--font-kamerik), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Segoe UI Emoji" !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.brand-slider {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    flex: 0 0 100%;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.brand-track {
+    display: flex;
+    flex-shrink: 0;
+    padding-right: 100px;
+    gap: 100px;
+    will-change: transform;
+    animation: scrolling 80s linear infinite;
+}
+
+.brand-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.brand-slider:hover .brand-track {
+    animation-play-state: paused;
+}
+
+.brand-item img {
+    height: 40px !important;
+    width: auto !important;
+    max-width: none !important;
+    transition: scale 0.2s ease;
+}
+
+.brand-item img:hover {
+    scale: .97;
+    transition: scale 0.2s ease;
+}
+
+@keyframes scrolling {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }

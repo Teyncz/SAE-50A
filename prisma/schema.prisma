@@ -1,12 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,103 +8,106 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Skis  {
-  id    Int     @id @default(autoincrement())
-  brand    Brand    @relation(fields: [brandId], references: [id])
-  brandId  Int
-  saison Saisons @relation(fields: [saisonId], references: [id])
-  saisonId Int
-  model String
-  levelRequired Int
-  description String
-  product_url String
-
-  categories CategoriesOnSkis[]
-  colors ColorsOnSkis[]
-  images SkisImages[]
-
-  specifications Specifications[]
-  skiLengths SkisLengths[]
-}
-
-model Specifications {
-  id Int @id @default(autoincrement())
-  ski Skis @relation(fields: [skiId], references: [id])
-  skiId Int @unique
-  handling Int
-  stability Int
-  pop Int
-  float Int
-  tip_width Float
-  waist_width Float
-  tail_width Float
-}
-
 model SkisLengths {
-  id Int @id @default(autoincrement())
-  ski Skis @relation(fields: [skiId], references: [id])
-  skiId Int
-  length Float
-  radius Float
-  weight Float
+  id          Int   @id @default(autoincrement())
+  skiId       Int
+  length      Float
+  radius      Float
+  weight      Float
+  tail_width  Float
+  tip_width   Float
+  waist_width Float
+  ski         skis  @relation(fields: [skiId], references: [id])
 
+  @@index([skiId], map: "skis_lengths_skiId_fkey")
   @@map("skis_lengths")
 }
 
-model Saisons {
-  id Int @id @default(autoincrement())
-  label String
-  active Boolean
-
-  skis Skis[]
-}
-
 model SkisImages {
-  id Int @id @default(autoincrement())
-  ski Skis @relation(fields: [skiId], references: [id])
-  skiId Int
-  alt String
+  id       Int    @id @default(autoincrement())
+  skiId    Int
+  alt      String
   fileName String
+  ski      skis   @relation(fields: [skiId], references: [id])
 
+  @@index([skiId], map: "skis_images_skiId_fkey")
   @@map("skis_images")
 }
 
-model Brand {
-  id  Int @id @default(autoincrement())
-  name String
-
-  skis Skis[]
-}
-
-model Colors {
-  id Int @id @default(autoincrement())
-  name String
-  hexaCode String
-  skis ColorsOnSkis?
-}
-
-model Categories {
-  id Int @id @default(autoincrement())
-  name String
-  skis CategoriesOnSkis[]
-}
-
 model CategoriesOnSkis {
-  category       Categories     @relation(fields: [categoryId], references: [id])
-  categoryId     Int
-  ski   Skis @relation(fields: [skiId], references: [id])
-  skiId Int
+  categoryId Int
+  skiId      Int
+  category   categories @relation(fields: [categoryId], references: [id])
+  ski        skis       @relation(fields: [skiId], references: [id])
 
   @@id([categoryId, skiId])
+  @@index([skiId], map: "categories_on_skis_skiId_fkey")
   @@map("categories_on_skis")
 }
 
 model ColorsOnSkis {
-  color Colors @relation(fields: [colorId], references: [id])
-  colorId Int @unique
-  ski   Skis @relation(fields: [skiId], references: [id])
-  skiId Int
+  colorId Int    @unique
+  skiId   Int
+  color   colors @relation(fields: [colorId], references: [id])
+  ski     skis   @relation(fields: [skiId], references: [id])
 
   @@id([colorId, skiId])
+  @@index([skiId], map: "colors_on_skis_skiId_fkey")
   @@map("colors_on_skis")
+}
+
+model brand {
+  id   Int    @id @default(autoincrement())
+  name String
+  skis skis[]
+}
+
+model categories {
+  id   Int                @id @default(autoincrement())
+  name String
+  skis CategoriesOnSkis[]
+}
+
+model colors {
+  id       Int           @id @default(autoincrement())
+  name     String
+  hexaCode String
+  skis     ColorsOnSkis?
+}
+
+model saisons {
+  id     Int     @id @default(autoincrement())
+  label  String
+  active Boolean
+  skis   skis[]
+}
+
+model skis {
+  id             Int                @id @default(autoincrement())
+  brandId        Int
+  saisonId       Int
+  model          String
+  levelRequired  Int
+  description    String
+  product_url    String
+  categories     CategoriesOnSkis[]
+  colors         ColorsOnSkis[]
+  brand          brand              @relation(fields: [brandId], references: [id], map: "Skis_brandId_fkey")
+  saisons        saisons            @relation(fields: [saisonId], references: [id], map: "Skis_saisonId_fkey")
+  images         SkisImages[]
+  skiLengths     SkisLengths[]
+  specifications specifications?
+
+  @@index([brandId], map: "Skis_brandId_fkey")
+  @@index([saisonId], map: "Skis_saisonId_fkey")
+}
+
+model specifications {
+  id        Int  @id @default(autoincrement())
+  skiId     Int  @unique(map: "Specifications_skiId_key")
+  handling  Int
+  stability Int
+  pop       Int
+  float     Int
+  skis      skis @relation(fields: [skiId], references: [id], map: "Specifications_skiId_fkey")
 }

@@ -89,7 +89,9 @@ model skis {
   model          String
   levelRequired  Int
   description    String
-  product_url    String
+  retailPrice    Float
+  productUrl     String
+  tumbnailUrl    String
   categories     CategoriesOnSkis[]
   colors         ColorsOnSkis[]
   brand          brand              @relation(fields: [brandId], references: [id], map: "Skis_brandId_fkey")

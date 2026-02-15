@@ -31,6 +31,7 @@ export type SkisAvgAggregateOutputType = {
   brandId: number | null
   saisonId: number | null
   levelRequired: number | null
+  retailPrice: number | null
 }
 
 export type SkisSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type SkisSumAggregateOutputType = {
   brandId: number | null
   saisonId: number | null
   levelRequired: number | null
+  retailPrice: number | null
 }
 
 export type SkisMinAggregateOutputType = {
@@ -47,7 +49,9 @@ export type SkisMinAggregateOutputType = {
   model: string | null
   levelRequired: number | null
   description: string | null
-  product_url: string | null
+  retailPrice: number | null
+  productUrl: string | null
+  tumbnailUrl: string | null
 }
 
 export type SkisMaxAggregateOutputType = {
@@ -57,7 +61,9 @@ export type SkisMaxAggregateOutputType = {
   model: string | null
   levelRequired: number | null
   description: string | null
-  product_url: string | null
+  retailPrice: number | null
+  productUrl: string | null
+  tumbnailUrl: string | null
 }
 
 export type SkisCountAggregateOutputType = {
@@ -67,7 +73,9 @@ export type SkisCountAggregateOutputType = {
   model: number
   levelRequired: number
   description: number
-  product_url: number
+  retailPrice: number
+  productUrl: number
+  tumbnailUrl: number
   _all: number
 }
 
@@ -77,6 +85,7 @@ export type SkisAvgAggregateInputType = {
   brandId?: true
   saisonId?: true
   levelRequired?: true
+  retailPrice?: true
 }
 
 export type SkisSumAggregateInputType = {
@@ -84,6 +93,7 @@ export type SkisSumAggregateInputType = {
   brandId?: true
   saisonId?: true
   levelRequired?: true
+  retailPrice?: true
 }
 
 export type SkisMinAggregateInputType = {
@@ -93,7 +103,9 @@ export type SkisMinAggregateInputType = {
   model?: true
   levelRequired?: true
   description?: true
-  product_url?: true
+  retailPrice?: true
+  productUrl?: true
+  tumbnailUrl?: true
 }
 
 export type SkisMaxAggregateInputType = {
@@ -103,7 +115,9 @@ export type SkisMaxAggregateInputType = {
   model?: true
   levelRequired?: true
   description?: true
-  product_url?: true
+  retailPrice?: true
+  productUrl?: true
+  tumbnailUrl?: true
 }
 
 export type SkisCountAggregateInputType = {
@@ -113,7 +127,9 @@ export type SkisCountAggregateInputType = {
   model?: true
   levelRequired?: true
   description?: true
-  product_url?: true
+  retailPrice?: true
+  productUrl?: true
+  tumbnailUrl?: true
   _all?: true
 }
 
@@ -210,7 +226,9 @@ export type SkisGroupByOutputType = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   _count: SkisCountAggregateOutputType | null
   _avg: SkisAvgAggregateOutputType | null
   _sum: SkisSumAggregateOutputType | null
@@ -243,7 +261,9 @@ export type skisWhereInput = {
   model?: Prisma.StringFilter<"skis"> | string
   levelRequired?: Prisma.IntFilter<"skis"> | number
   description?: Prisma.StringFilter<"skis"> | string
-  product_url?: Prisma.StringFilter<"skis"> | string
+  retailPrice?: Prisma.FloatFilter<"skis"> | number
+  productUrl?: Prisma.StringFilter<"skis"> | string
+  tumbnailUrl?: Prisma.StringFilter<"skis"> | string
   categories?: Prisma.CategoriesOnSkisListRelationFilter
   colors?: Prisma.ColorsOnSkisListRelationFilter
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.brandWhereInput>
@@ -260,7 +280,9 @@ export type skisOrderByWithRelationInput = {
   model?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  product_url?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
+  productUrl?: Prisma.SortOrder
+  tumbnailUrl?: Prisma.SortOrder
   categories?: Prisma.CategoriesOnSkisOrderByRelationAggregateInput
   colors?: Prisma.ColorsOnSkisOrderByRelationAggregateInput
   brand?: Prisma.brandOrderByWithRelationInput
@@ -281,7 +303,9 @@ export type skisWhereUniqueInput = Prisma.AtLeast<{
   model?: Prisma.StringFilter<"skis"> | string
   levelRequired?: Prisma.IntFilter<"skis"> | number
   description?: Prisma.StringFilter<"skis"> | string
-  product_url?: Prisma.StringFilter<"skis"> | string
+  retailPrice?: Prisma.FloatFilter<"skis"> | number
+  productUrl?: Prisma.StringFilter<"skis"> | string
+  tumbnailUrl?: Prisma.StringFilter<"skis"> | string
   categories?: Prisma.CategoriesOnSkisListRelationFilter
   colors?: Prisma.ColorsOnSkisListRelationFilter
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.brandWhereInput>
@@ -298,7 +322,9 @@ export type skisOrderByWithAggregationInput = {
   model?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  product_url?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
+  productUrl?: Prisma.SortOrder
+  tumbnailUrl?: Prisma.SortOrder
   _count?: Prisma.skisCountOrderByAggregateInput
   _avg?: Prisma.skisAvgOrderByAggregateInput
   _max?: Prisma.skisMaxOrderByAggregateInput
@@ -316,14 +342,18 @@ export type skisScalarWhereWithAggregatesInput = {
   model?: Prisma.StringWithAggregatesFilter<"skis"> | string
   levelRequired?: Prisma.IntWithAggregatesFilter<"skis"> | number
   description?: Prisma.StringWithAggregatesFilter<"skis"> | string
-  product_url?: Prisma.StringWithAggregatesFilter<"skis"> | string
+  retailPrice?: Prisma.FloatWithAggregatesFilter<"skis"> | number
+  productUrl?: Prisma.StringWithAggregatesFilter<"skis"> | string
+  tumbnailUrl?: Prisma.StringWithAggregatesFilter<"skis"> | string
 }
 
 export type skisCreateInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
@@ -340,7 +370,9 @@ export type skisUncheckedCreateInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
@@ -352,7 +384,9 @@ export type skisUpdateInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
@@ -369,7 +403,9 @@ export type skisUncheckedUpdateInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
@@ -384,14 +420,18 @@ export type skisCreateManyInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
 }
 
 export type skisUpdateManyMutationInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type skisUncheckedUpdateManyInput = {
@@ -401,7 +441,9 @@ export type skisUncheckedUpdateManyInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SkisScalarRelationFilter = {
@@ -432,7 +474,9 @@ export type skisCountOrderByAggregateInput = {
   model?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  product_url?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
+  productUrl?: Prisma.SortOrder
+  tumbnailUrl?: Prisma.SortOrder
 }
 
 export type skisAvgOrderByAggregateInput = {
@@ -440,6 +484,7 @@ export type skisAvgOrderByAggregateInput = {
   brandId?: Prisma.SortOrder
   saisonId?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
 }
 
 export type skisMaxOrderByAggregateInput = {
@@ -449,7 +494,9 @@ export type skisMaxOrderByAggregateInput = {
   model?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  product_url?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
+  productUrl?: Prisma.SortOrder
+  tumbnailUrl?: Prisma.SortOrder
 }
 
 export type skisMinOrderByAggregateInput = {
@@ -459,7 +506,9 @@ export type skisMinOrderByAggregateInput = {
   model?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  product_url?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
+  productUrl?: Prisma.SortOrder
+  tumbnailUrl?: Prisma.SortOrder
 }
 
 export type skisSumOrderByAggregateInput = {
@@ -467,6 +516,7 @@ export type skisSumOrderByAggregateInput = {
   brandId?: Prisma.SortOrder
   saisonId?: Prisma.SortOrder
   levelRequired?: Prisma.SortOrder
+  retailPrice?: Prisma.SortOrder
 }
 
 export type skisCreateNestedOneWithoutSkiLengthsInput = {
@@ -627,7 +677,9 @@ export type skisCreateWithoutSkiLengthsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
@@ -643,7 +695,9 @@ export type skisUncheckedCreateWithoutSkiLengthsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
@@ -670,7 +724,9 @@ export type skisUpdateWithoutSkiLengthsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
@@ -686,7 +742,9 @@ export type skisUncheckedUpdateWithoutSkiLengthsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
@@ -697,7 +755,9 @@ export type skisCreateWithoutImagesInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
@@ -713,7 +773,9 @@ export type skisUncheckedCreateWithoutImagesInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   skiLengths?: Prisma.SkisLengthsUncheckedCreateNestedManyWithoutSkiInput
@@ -740,7 +802,9 @@ export type skisUpdateWithoutImagesInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
@@ -756,7 +820,9 @@ export type skisUncheckedUpdateWithoutImagesInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   skiLengths?: Prisma.SkisLengthsUncheckedUpdateManyWithoutSkiNestedInput
@@ -767,7 +833,9 @@ export type skisCreateWithoutCategoriesInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
   saisons: Prisma.saisonsCreateNestedOneWithoutSkisInput
@@ -783,7 +851,9 @@ export type skisUncheckedCreateWithoutCategoriesInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
   skiLengths?: Prisma.SkisLengthsUncheckedCreateNestedManyWithoutSkiInput
@@ -810,7 +880,9 @@ export type skisUpdateWithoutCategoriesInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
   saisons?: Prisma.saisonsUpdateOneRequiredWithoutSkisNestedInput
@@ -826,7 +898,9 @@ export type skisUncheckedUpdateWithoutCategoriesInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
   skiLengths?: Prisma.SkisLengthsUncheckedUpdateManyWithoutSkiNestedInput
@@ -837,7 +911,9 @@ export type skisCreateWithoutColorsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
   saisons: Prisma.saisonsCreateNestedOneWithoutSkisInput
@@ -853,7 +929,9 @@ export type skisUncheckedCreateWithoutColorsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
   skiLengths?: Prisma.SkisLengthsUncheckedCreateNestedManyWithoutSkiInput
@@ -880,7 +958,9 @@ export type skisUpdateWithoutColorsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
   saisons?: Prisma.saisonsUpdateOneRequiredWithoutSkisNestedInput
@@ -896,7 +976,9 @@ export type skisUncheckedUpdateWithoutColorsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
   skiLengths?: Prisma.SkisLengthsUncheckedUpdateManyWithoutSkiNestedInput
@@ -907,7 +989,9 @@ export type skisCreateWithoutBrandInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   saisons: Prisma.saisonsCreateNestedOneWithoutSkisInput
@@ -922,7 +1006,9 @@ export type skisUncheckedCreateWithoutBrandInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
@@ -966,14 +1052,18 @@ export type skisScalarWhereInput = {
   model?: Prisma.StringFilter<"skis"> | string
   levelRequired?: Prisma.IntFilter<"skis"> | number
   description?: Prisma.StringFilter<"skis"> | string
-  product_url?: Prisma.StringFilter<"skis"> | string
+  retailPrice?: Prisma.FloatFilter<"skis"> | number
+  productUrl?: Prisma.StringFilter<"skis"> | string
+  tumbnailUrl?: Prisma.StringFilter<"skis"> | string
 }
 
 export type skisCreateWithoutSaisonsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
@@ -988,7 +1078,9 @@ export type skisUncheckedCreateWithoutSaisonsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
@@ -1026,7 +1118,9 @@ export type skisCreateWithoutSpecificationsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisCreateNestedManyWithoutSkiInput
   brand: Prisma.brandCreateNestedOneWithoutSkisInput
@@ -1042,7 +1136,9 @@ export type skisUncheckedCreateWithoutSpecificationsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
   categories?: Prisma.CategoriesOnSkisUncheckedCreateNestedManyWithoutSkiInput
   colors?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutSkiInput
   images?: Prisma.SkisImagesUncheckedCreateNestedManyWithoutSkiInput
@@ -1069,7 +1165,9 @@ export type skisUpdateWithoutSpecificationsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
@@ -1085,7 +1183,9 @@ export type skisUncheckedUpdateWithoutSpecificationsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
@@ -1098,14 +1198,18 @@ export type skisCreateManyBrandInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
 }
 
 export type skisUpdateWithoutBrandInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   saisons?: Prisma.saisonsUpdateOneRequiredWithoutSkisNestedInput
@@ -1120,7 +1224,9 @@ export type skisUncheckedUpdateWithoutBrandInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
@@ -1134,7 +1240,9 @@ export type skisUncheckedUpdateManyWithoutBrandInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type skisCreateManySaisonsInput = {
@@ -1143,14 +1251,18 @@ export type skisCreateManySaisonsInput = {
   model: string
   levelRequired: number
   description: string
-  product_url: string
+  retailPrice: number
+  productUrl: string
+  tumbnailUrl: string
 }
 
 export type skisUpdateWithoutSaisonsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUpdateManyWithoutSkiNestedInput
   brand?: Prisma.brandUpdateOneRequiredWithoutSkisNestedInput
@@ -1165,7 +1277,9 @@ export type skisUncheckedUpdateWithoutSaisonsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   categories?: Prisma.CategoriesOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   colors?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiNestedInput
   images?: Prisma.SkisImagesUncheckedUpdateManyWithoutSkiNestedInput
@@ -1179,7 +1293,9 @@ export type skisUncheckedUpdateManyWithoutSaisonsInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   levelRequired?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  product_url?: Prisma.StringFieldUpdateOperationsInput | string
+  retailPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  productUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  tumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1247,7 +1363,9 @@ export type skisSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   model?: boolean
   levelRequired?: boolean
   description?: boolean
-  product_url?: boolean
+  retailPrice?: boolean
+  productUrl?: boolean
+  tumbnailUrl?: boolean
   categories?: boolean | Prisma.skis$categoriesArgs<ExtArgs>
   colors?: boolean | Prisma.skis$colorsArgs<ExtArgs>
   brand?: boolean | Prisma.brandDefaultArgs<ExtArgs>
@@ -1267,10 +1385,12 @@ export type skisSelectScalar = {
   model?: boolean
   levelRequired?: boolean
   description?: boolean
-  product_url?: boolean
+  retailPrice?: boolean
+  productUrl?: boolean
+  tumbnailUrl?: boolean
 }
 
-export type skisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "brandId" | "saisonId" | "model" | "levelRequired" | "description" | "product_url", ExtArgs["result"]["skis"]>
+export type skisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "brandId" | "saisonId" | "model" | "levelRequired" | "description" | "retailPrice" | "productUrl" | "tumbnailUrl", ExtArgs["result"]["skis"]>
 export type skisInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   categories?: boolean | Prisma.skis$categoriesArgs<ExtArgs>
   colors?: boolean | Prisma.skis$colorsArgs<ExtArgs>
@@ -1300,7 +1420,9 @@ export type $skisPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     model: string
     levelRequired: number
     description: string
-    product_url: string
+    retailPrice: number
+    productUrl: string
+    tumbnailUrl: string
   }, ExtArgs["result"]["skis"]>
   composites: {}
 }
@@ -1683,7 +1805,9 @@ export interface skisFieldRefs {
   readonly model: Prisma.FieldRef<"skis", 'String'>
   readonly levelRequired: Prisma.FieldRef<"skis", 'Int'>
   readonly description: Prisma.FieldRef<"skis", 'String'>
-  readonly product_url: Prisma.FieldRef<"skis", 'String'>
+  readonly retailPrice: Prisma.FieldRef<"skis", 'Float'>
+  readonly productUrl: Prisma.FieldRef<"skis", 'String'>
+  readonly tumbnailUrl: Prisma.FieldRef<"skis", 'String'>
 }
     
 

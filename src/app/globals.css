@@ -8,9 +8,11 @@
 @theme {
     --color-black-primary: #181818;
     --color-gray-primary: #ACACAC;
+    --color-gray-dark: #484848;
     --color-gray-clear: #767676;
     --color-gray-light: #f1f1f1;
     --color-black-brown: #130E08;
+    --color-gray-border: #E4E4E4;
     --color-blue-light: #69BFCE;
 }
 

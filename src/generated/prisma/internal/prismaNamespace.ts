@@ -1199,7 +1199,9 @@ export const SkisScalarFieldEnum = {
   model: 'model',
   levelRequired: 'levelRequired',
   description: 'description',
-  product_url: 'product_url'
+  retailPrice: 'retailPrice',
+  productUrl: 'productUrl',
+  tumbnailUrl: 'tumbnailUrl'
 } as const
 
 export type SkisScalarFieldEnum = (typeof SkisScalarFieldEnum)[keyof typeof SkisScalarFieldEnum]
@@ -1265,7 +1267,8 @@ export type saisonsOrderByRelevanceFieldEnum = (typeof saisonsOrderByRelevanceFi
 export const skisOrderByRelevanceFieldEnum = {
   model: 'model',
   description: 'description',
-  product_url: 'product_url'
+  productUrl: 'productUrl',
+  tumbnailUrl: 'tumbnailUrl'
 } as const
 
 export type skisOrderByRelevanceFieldEnum = (typeof skisOrderByRelevanceFieldEnum)[keyof typeof skisOrderByRelevanceFieldEnum]

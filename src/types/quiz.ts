@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@/generated/prisma/client';
 
 export type StepType = 'card' | 'select' | 'input' | 'multipleFields';
 export type FieldType = 'input' | 'select';
@@ -17,7 +17,7 @@ export type QuizAnswers = {
     style: string;
     physique?: PhysiqueAnswers;
     skiDays: string;
-    budget: number;
+    budget: string;
 };
 
 export interface Option {
@@ -52,10 +52,12 @@ export interface QuizStep {
     label?: string;
 }
 
-export type SkiRecommendation = Prisma.SkisGetPayload<{
-    include: {
-        specifications: true;
-        brand: true;
-        colors?: true;
-    };
-}>
+export type SkiRecommendation = Prisma.$skisPayload['scalars'] & {
+    specifications: Prisma.$specificationsPayload['scalars'] | null;
+    brand: Prisma.$brandPayload['scalars'];
+    skiLengths: Prisma.$SkisLengthsPayload['scalars'][];
+    categories: (Prisma.$CategoriesOnSkisPayload['scalars'] & {
+        category: Prisma.$categoriesPayload['scalars'];
+    })[];
+    finalScore: number;
+}

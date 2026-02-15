@@ -1,5 +1,5 @@
 import {NextResponse} from 'next/server';
-import {getSkiRecommendations} from '@/services/algo';
+import {getSkiRecommendations} from '@/services/searchEngine';
 
 export async function POST(request: Request) {
 

@@ -1,19 +1,22 @@
 "use client";
 
 import React, {useState} from "react";
-import type {QuizStep, Field} from "@/types/quiz";
+import {QuizStep, Field, QuizRaw} from "@/types/quiz";
 
 interface Props {
-    data: QuizStep | Field;
+    data: QuizStep | Field | QuizRaw;
     onChange?: (value: string | number) => void;
+    label?: boolean;
 }
 
-export const Input: React.FC<Props> = ({data, onChange}) => {
+export const Input: React.FC<Props> = ({data, onChange, label = true}) => {
     const [value, setValue] = useState<string | number | null>(null);
 
     return (
         <div key={data.id} className={"relative flex flex-col gap-[5px]"}>
-            <label className={"text-black-primary text-[15px] font-[500]"}>{data.label}</label>
+            {label && (
+                <label className={"text-black-primary text-[15px] font-[500]"}>{data.label}</label>
+            )}
             <input
                 type={data.inputType || "text"}
                 placeholder={data.placeholder}

@@ -65,7 +65,7 @@ export default function Quiz() {
                 </a>
             </div>
             <div className={"w-full bg-[#D9D9D9] h-[5px] mb-[10vh]"}>
-                <div className={"bg-black-primary h-full"} style={{width: `${progressPercent}%`}}></div>
+                <div className={"bg-black-primary h-full transition-all duration-800"} style={{width: `${progressPercent}%`, transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'}}></div>
             </div>
             <div className={"px-[10vw] w-full mx-auto flex flex-col gap-[7vh] items-start"}>
                 <div className={"flex flex-col"}>

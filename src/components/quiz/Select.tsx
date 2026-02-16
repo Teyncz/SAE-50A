@@ -1,12 +1,12 @@
 "use client";
 
 import React, {useState, useRef, useEffect} from "react";
-import type {QuizStep, Field} from "@/types/quiz";
+import {QuizStep, Field, QuizRaw} from "@/types/quiz";
 import {Check, ChevronDown} from "lucide-react";
 import {Why} from "@/components/quiz/Why";
 
 interface Props {
-    data: QuizStep | Field;
+    data: QuizStep | Field | QuizRaw;
     onChange?: (value: string | number) => void;
 }
 
@@ -51,7 +51,7 @@ export const Select: React.FC<Props> = ({data, onChange}) => {
 
             { data.why && <Why text={data.why}/>}
 
-            <div className={`absolute bg-white border-1 rounded-[8px] border-[#E5E5E5] px-2 py-2 w-full top-0 ${!isOpen ? "hidden" : ""}`}>
+            <div className={`absolute bg-white border-1 rounded-[8px] border-[#E5E5E5] px-2 py-2 w-full top-0 z-50 ${!isOpen ? "hidden" : ""}`}>
                 <ul>
                     {options.map((opt) => (
                         <li key={opt.value}>

@@ -1,4 +1,4 @@
-import type { Prisma } from '@/generated/prisma/client';
+import type {Prisma} from '@/generated/prisma/client';
 
 export type StepType = 'card' | 'select' | 'input' | 'multipleFields';
 export type FieldType = 'input' | 'select';
@@ -38,6 +38,17 @@ export interface Field {
     why?: string;
 }
 
+export interface QuizRaw {
+    id: string;
+    label: string;
+    type: StepType;
+    placeholder?: string;
+    inputType?: string;
+    options?: Option[];
+    why?: string;
+    helpText?: string;
+}
+
 export interface QuizStep {
     id: string;
     index: number;
@@ -48,7 +59,7 @@ export interface QuizStep {
     placeholder?: string;
     fields?: Field[];
     why?: string;
-    helpText? : string;
+    helpText?: string;
     label?: string;
 }
 

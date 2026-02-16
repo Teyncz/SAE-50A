@@ -9,7 +9,7 @@ export const QUIZ_QUESTIONS: QuizStep[] = [
         options: [
             {label: "Piste", value: "slope", img: "slope.jpg"},
             {label: "Park", value: "park", img: "park.jpg"},
-            {label: "Powder", value: "powder", img: "powder.jpg"},
+            {label: "Poudreuse", value: "powder", img: "powder.jpg"},
         ],
         why: "Votre terrain de ski principal nous aide à recommander des skis qui sont optimisés pour les conditions et les styles de ski que vous préférez, assurant ainsi une meilleure performance et plaisir sur les pistes."
     },

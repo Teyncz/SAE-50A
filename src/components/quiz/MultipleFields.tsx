@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {QuizStep, Field, DynamicAnswers} from "@/types/quiz";
 import {Select} from "@/components/quiz/Select";
 import {Input} from "@/components/quiz/Input";
@@ -8,18 +8,35 @@ import {Input} from "@/components/quiz/Input";
 interface Props {
     data: QuizStep;
     onChange?: (value: DynamicAnswers) => void;
+    providedValues?: Record<string, string | number> | null;
 }
 
-export const MultipleFields: React.FC<Props> = ({data, onChange}) => {
+export const MultipleFields: React.FC<Props> = ({data, onChange, providedValues}) => {
         const containerRef = useRef<HTMLDivElement | null>(null);
 
         const [answers, setAnswers] = useState<DynamicAnswers>(() => {
             const initial: DynamicAnswers = {};
             data.fields?.forEach(field => {
-                initial[field.id] = field.inputType === "number" ? 0 : "";
+                // Utiliser providedValues si disponible, sinon valeur par défaut
+                if (providedValues && providedValues[field.id] !== undefined) {
+                    initial[field.id] = providedValues[field.id];
+                } else {
+                    initial[field.id] = field.inputType === "number" ? 0 : "";
+                }
             });
             return initial;
         });
+
+        useEffect(() => {
+            if (providedValues) {
+                queueMicrotask(() => {
+                    setAnswers(prev => ({
+                        ...prev,
+                        ...providedValues
+                    }));
+                });
+            }
+        }, [providedValues]);
 
         if (!data) return null;
         const fields = data.fields ?? [];
@@ -36,10 +53,12 @@ export const MultipleFields: React.FC<Props> = ({data, onChange}) => {
         function buildType(field: Field) {
             switch (field.type) {
                 case "select":
-                    return <Select key={field.id ?? `field-${field.id}`} data={field}
+                    const providedValue = providedValues && providedValues[field.id] ? providedValues[field.id] : null;
+                    return <Select key={field.id ?? `field-${field.id}`} data={field} providedValue={providedValue}
                                    onChange={(val) => handleChange(field.id, val)}/>;
                 case "input":
-                    return <Input key={field.id ?? `field-${field.id}`} data={field}
+                    const inputProvidedValue = providedValues ? providedValues[field.id] : null;
+                    return <Input key={field.id ?? `field-${field.id}`} data={field} providedValue={inputProvidedValue}
                                   onChange={(val) => handleChange(field.id, val)}/>;
                 default:
                     return null;

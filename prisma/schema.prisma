@@ -46,7 +46,7 @@ model CategoriesOnSkis {
 }
 
 model ColorsOnSkis {
-  colorId Int    @unique
+  colorId Int
   skiId   Int
   color   colors @relation(fields: [colorId], references: [id])
   ski     skis   @relation(fields: [skiId], references: [id])
@@ -69,10 +69,10 @@ model categories {
 }
 
 model colors {
-  id       Int           @id @default(autoincrement())
+  id       Int            @id @default(autoincrement())
   name     String
   hexaCode String
-  skis     ColorsOnSkis?
+  skis     ColorsOnSkis[]
 }
 
 model saisons {

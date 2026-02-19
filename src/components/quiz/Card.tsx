@@ -1,16 +1,23 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import type {QuizStep} from "@/types/quiz";
 import {Why} from "@/components/quiz/Why";
 
 interface Props {
     data: QuizStep;
     onChange?: (value: string | number) => void;
+    providedValue?: string | number | null;
 }
 
-export const Card: React.FC<Props> = ({data, onChange}) => {
-    const [selectedValue, setSelectedValue] = useState<string | null | number>(null);
+export const Card: React.FC<Props> = ({data, onChange, providedValue}) => {
+    const [selectedValue, setSelectedValue] = useState<string | null | number>(providedValue ?? null);
+
+    useEffect(() => {
+        queueMicrotask(() => {
+            setSelectedValue(providedValue ?? null);
+        });
+    }, [providedValue]);
 
     if (!data) return null;
     const options = data.options ?? [];

@@ -11,7 +11,8 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
             {label: "Piste", value: "slope"},
             {label: "Park", value: "park"},
             {label: "Poudreuse", value: "powder"},
-        ]
+        ],
+        required: true,
     },
     {
         id: "level",
@@ -26,7 +27,8 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
             {label: "Passe partout de façon aisée", value: 6},
             {label: "Bon skieur, ski d'attaque sur tout terrain", value: 8},
             {label: "Expert, sur terrains engagés", value: 10},
-        ]
+        ],
+        required: true,
     }, {
         id: "style",
         label: "Quel est style recherchez-vous ?",
@@ -36,21 +38,24 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
             {label: "Vitesse et stabilité", value: 1},
             {label: "Pop & Freestyle", value: 2},
             {label: "Vif & Rayon court", value: 3},
-        ]
+        ],
+        required: true,
     },
     {
         id: "height",
         label: "Votre taille ?",
-        placeholder: "Indiquez votre taille en cm",
+        placeholder: "Indiquez votre taille",
         type: "input",
         inputType: "number",
+        required: true,
     },
     {
         id: "weight",
         label: "Votre poids ?",
-        placeholder: "Indiquez votre poids en kg",
+        placeholder: "Indiquez votre poids",
         type: "input",
         inputType: "number",
+        required: true,
     },
     {
         id: "age",
@@ -58,6 +63,7 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
         placeholder: "Indiquez votre âge",
         type: "input",
         inputType: "number",
+        required: true,
     },
     {
         id: "skiDays",
@@ -69,7 +75,8 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
             {label: "5 à 10 jours", value: "5-10"},
             {label: "10 à 20 jours", value: "10-20"},
             {label: "Plus de 20 jours", value: "20+"},
-        ]
+        ],
+        required: true,
     },
     {
         id: "budget",
@@ -81,6 +88,7 @@ export const QUIZ_QUESTIONS: QuizRaw[] = [
             {label: "300€ à 500€", value: "300-500"},
             {label: "500€ à 800€", value: "500-800"},
             {label: "Plus de 800€", value: ">800"},
-        ]
+        ],
+        required: true,
     },
 ]

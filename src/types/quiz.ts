@@ -47,6 +47,7 @@ export interface QuizRaw {
     options?: Option[];
     why?: string;
     helpText?: string;
+    required?: boolean;
 }
 
 export interface QuizStep {
@@ -61,6 +62,7 @@ export interface QuizStep {
     why?: string;
     helpText?: string;
     label?: string;
+    required?: boolean;
 }
 
 export type SkiRecommendation = Prisma.$skisPayload['scalars'] & {
@@ -70,5 +72,11 @@ export type SkiRecommendation = Prisma.$skisPayload['scalars'] & {
     categories: (Prisma.$CategoriesOnSkisPayload['scalars'] & {
         category: Prisma.$categoriesPayload['scalars'];
     })[];
+    colors: {
+        colorId: number;
+        skiId: number;
+        color: Prisma.$colorsPayload['scalars'];
+    }[];
+    images?: Prisma.$SkisImagesPayload['scalars'][];
     finalScore: number;
 }

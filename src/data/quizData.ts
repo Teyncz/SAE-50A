@@ -3,6 +3,7 @@ import type {QuizStep} from "@/types/quiz";
 export const QUIZ_QUESTIONS: QuizStep[] = [
     {
         id: "terrain",
+        required: true,
         index: 1,
         question: "Quel est votre terrain principale ?",
         type: "card",
@@ -16,6 +17,7 @@ export const QUIZ_QUESTIONS: QuizStep[] = [
     {
         id: "level",
         index: 2,
+        required: true,
         question: "Comment évaluez-vous votre niveau ?",
         type: "select",
         placeholder: "Sélectionnez votre niveau",
@@ -54,7 +56,7 @@ export const QUIZ_QUESTIONS: QuizStep[] = [
                 inputType: "number",
                 placeholder: "175cm",
                 helpText: "Indiquez votre taille en cm",
-                required: false,
+                required: true,
                 why: "La taille est un facteur clé pour déterminer la longueur du ski qui vous conviendrait le mieux, en fonction de votre niveau et de votre style de ski."
             },
             {
@@ -64,13 +66,14 @@ export const QUIZ_QUESTIONS: QuizStep[] = [
                 inputType: "number",
                 placeholder: "70kg",
                 helpText: "Indiquez votre poids en kg",
-                required: false,
+                required: true,
                 why: "La taille et le poids sont des facteurs importants pour déterminer la flexibilité et la longueur du ski qui vous conviendraient le mieux."
             },
             {
                 type: "select",
                 id: "age",
                 label: "Votre âge",
+                required: false,
                 placeholder: "Sélectionnez votre tranche d'âge",
                 options: [
                     {label: "Moins de 25 ans", value: "<25"},

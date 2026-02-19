@@ -3,10 +3,10 @@ import {getSkiRecommendations} from '@/services/searchEngine';
 
 export async function POST(request: Request) {
 
-    const {answers} = await request.json();
+    const {answers, colors, brands} = await request.json();
 
     try {
-        const recommendations = await getSkiRecommendations(answers);
+        const recommendations = await getSkiRecommendations(answers, colors, brands);
         return NextResponse.json(recommendations);
     } catch (error) {
         console.error('Failed to get recommendations', error);

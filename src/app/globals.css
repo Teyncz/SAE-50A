@@ -121,6 +121,11 @@ input:focus {
 }
 
 .no-scrollbar {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tiny-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #767676 transparent;
 }

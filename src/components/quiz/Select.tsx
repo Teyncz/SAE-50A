@@ -8,12 +8,20 @@ import {Why} from "@/components/quiz/Why";
 interface Props {
     data: QuizStep | Field | QuizRaw;
     onChange?: (value: string | number) => void;
+    providedValue?: string | number | null;
 }
 
-export const Select: React.FC<Props> = ({data, onChange}) => {
-    const [selectedValue, setSelectedValue] = useState<string | number | null>(null);
+export const Select: React.FC<Props> = ({data, onChange, providedValue}) => {
+    const [selectedValue, setSelectedValue] = useState<string | null | number>(providedValue ?? null);
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        queueMicrotask(() => {
+            setSelectedValue(providedValue ?? null);
+        });
+        console.log("Provided value updated:", providedValue);
+    }, [providedValue]);
 
 
     useEffect(() => {

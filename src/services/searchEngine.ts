@@ -1,13 +1,27 @@
 import {prisma} from "@/lib/prisma";
 import {QuizAnswers} from "@/types/quiz";
 
-export async function getSkiRecommendations(answers: QuizAnswers) {
+export async function getSkiRecommendations(answers: QuizAnswers,colors: (string | number)[] = [], brand: (string | number)[] = []) {
     const allSkis = await prisma.skis.findMany({
+        where: {
+            ...(Array.isArray(brand) && brand.length > 0 && {
+                brandId: { in: brand.map(Number) }
+            }),
+
+            ...(Array.isArray(colors) && colors.length > 0 && {
+                colors: {
+                    some: {
+                        colorId: { in: colors.map(Number) }
+                    }
+                }
+            }),
+        },
         include: {
             specifications: true,
             brand: true,
             skiLengths: true,
-            categories: {include: {category: true}},
+            categories: { include: { category: true } },
+            colors: { include: { color: true } },
         }
     });
 

@@ -208,15 +208,15 @@ export type ColorsOnSkisOrderByWithRelationInput = {
 }
 
 export type ColorsOnSkisWhereUniqueInput = Prisma.AtLeast<{
-  colorId?: number
   colorId_skiId?: Prisma.ColorsOnSkisColorIdSkiIdCompoundUniqueInput
   AND?: Prisma.ColorsOnSkisWhereInput | Prisma.ColorsOnSkisWhereInput[]
   OR?: Prisma.ColorsOnSkisWhereInput[]
   NOT?: Prisma.ColorsOnSkisWhereInput | Prisma.ColorsOnSkisWhereInput[]
+  colorId?: Prisma.IntFilter<"ColorsOnSkis"> | number
   skiId?: Prisma.IntFilter<"ColorsOnSkis"> | number
   color?: Prisma.XOR<Prisma.ColorsScalarRelationFilter, Prisma.colorsWhereInput>
   ski?: Prisma.XOR<Prisma.SkisScalarRelationFilter, Prisma.skisWhereInput>
-}, "colorId_skiId" | "colorId">
+}, "colorId_skiId">
 
 export type ColorsOnSkisOrderByWithAggregationInput = {
   colorId?: Prisma.SortOrder
@@ -300,11 +300,6 @@ export type ColorsOnSkisSumOrderByAggregateInput = {
   skiId?: Prisma.SortOrder
 }
 
-export type ColorsOnSkisNullableScalarRelationFilter = {
-  is?: Prisma.ColorsOnSkisWhereInput | null
-  isNot?: Prisma.ColorsOnSkisWhereInput | null
-}
-
 export type ColorsOnSkisListRelationFilter = {
   every?: Prisma.ColorsOnSkisWhereInput
   some?: Prisma.ColorsOnSkisWhereInput
@@ -315,36 +310,46 @@ export type ColorsOnSkisOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type ColorsOnSkisCreateNestedOneWithoutColorInput = {
-  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
-  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput
-  connect?: Prisma.ColorsOnSkisWhereUniqueInput
+export type ColorsOnSkisCreateNestedManyWithoutColorInput = {
+  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput> | Prisma.ColorsOnSkisCreateWithoutColorInput[] | Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput[]
+  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput | Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput[]
+  createMany?: Prisma.ColorsOnSkisCreateManyColorInputEnvelope
+  connect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
 }
 
-export type ColorsOnSkisUncheckedCreateNestedOneWithoutColorInput = {
-  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
-  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput
-  connect?: Prisma.ColorsOnSkisWhereUniqueInput
+export type ColorsOnSkisUncheckedCreateNestedManyWithoutColorInput = {
+  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput> | Prisma.ColorsOnSkisCreateWithoutColorInput[] | Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput[]
+  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput | Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput[]
+  createMany?: Prisma.ColorsOnSkisCreateManyColorInputEnvelope
+  connect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
 }
 
-export type ColorsOnSkisUpdateOneWithoutColorNestedInput = {
-  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
-  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput
-  upsert?: Prisma.ColorsOnSkisUpsertWithoutColorInput
-  disconnect?: Prisma.ColorsOnSkisWhereInput | boolean
-  delete?: Prisma.ColorsOnSkisWhereInput | boolean
-  connect?: Prisma.ColorsOnSkisWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ColorsOnSkisUpdateToOneWithWhereWithoutColorInput, Prisma.ColorsOnSkisUpdateWithoutColorInput>, Prisma.ColorsOnSkisUncheckedUpdateWithoutColorInput>
+export type ColorsOnSkisUpdateManyWithoutColorNestedInput = {
+  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput> | Prisma.ColorsOnSkisCreateWithoutColorInput[] | Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput[]
+  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput | Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput[]
+  upsert?: Prisma.ColorsOnSkisUpsertWithWhereUniqueWithoutColorInput | Prisma.ColorsOnSkisUpsertWithWhereUniqueWithoutColorInput[]
+  createMany?: Prisma.ColorsOnSkisCreateManyColorInputEnvelope
+  set?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  disconnect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  delete?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  connect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  update?: Prisma.ColorsOnSkisUpdateWithWhereUniqueWithoutColorInput | Prisma.ColorsOnSkisUpdateWithWhereUniqueWithoutColorInput[]
+  updateMany?: Prisma.ColorsOnSkisUpdateManyWithWhereWithoutColorInput | Prisma.ColorsOnSkisUpdateManyWithWhereWithoutColorInput[]
+  deleteMany?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
 }
 
-export type ColorsOnSkisUncheckedUpdateOneWithoutColorNestedInput = {
-  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
-  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput
-  upsert?: Prisma.ColorsOnSkisUpsertWithoutColorInput
-  disconnect?: Prisma.ColorsOnSkisWhereInput | boolean
-  delete?: Prisma.ColorsOnSkisWhereInput | boolean
-  connect?: Prisma.ColorsOnSkisWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ColorsOnSkisUpdateToOneWithWhereWithoutColorInput, Prisma.ColorsOnSkisUpdateWithoutColorInput>, Prisma.ColorsOnSkisUncheckedUpdateWithoutColorInput>
+export type ColorsOnSkisUncheckedUpdateManyWithoutColorNestedInput = {
+  create?: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput> | Prisma.ColorsOnSkisCreateWithoutColorInput[] | Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput[]
+  connectOrCreate?: Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput | Prisma.ColorsOnSkisCreateOrConnectWithoutColorInput[]
+  upsert?: Prisma.ColorsOnSkisUpsertWithWhereUniqueWithoutColorInput | Prisma.ColorsOnSkisUpsertWithWhereUniqueWithoutColorInput[]
+  createMany?: Prisma.ColorsOnSkisCreateManyColorInputEnvelope
+  set?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  disconnect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  delete?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  connect?: Prisma.ColorsOnSkisWhereUniqueInput | Prisma.ColorsOnSkisWhereUniqueInput[]
+  update?: Prisma.ColorsOnSkisUpdateWithWhereUniqueWithoutColorInput | Prisma.ColorsOnSkisUpdateWithWhereUniqueWithoutColorInput[]
+  updateMany?: Prisma.ColorsOnSkisUpdateManyWithWhereWithoutColorInput | Prisma.ColorsOnSkisUpdateManyWithWhereWithoutColorInput[]
+  deleteMany?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
 }
 
 export type ColorsOnSkisCreateNestedManyWithoutSkiInput = {
@@ -402,23 +407,33 @@ export type ColorsOnSkisCreateOrConnectWithoutColorInput = {
   create: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
 }
 
-export type ColorsOnSkisUpsertWithoutColorInput = {
-  update: Prisma.XOR<Prisma.ColorsOnSkisUpdateWithoutColorInput, Prisma.ColorsOnSkisUncheckedUpdateWithoutColorInput>
-  create: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
-  where?: Prisma.ColorsOnSkisWhereInput
+export type ColorsOnSkisCreateManyColorInputEnvelope = {
+  data: Prisma.ColorsOnSkisCreateManyColorInput | Prisma.ColorsOnSkisCreateManyColorInput[]
+  skipDuplicates?: boolean
 }
 
-export type ColorsOnSkisUpdateToOneWithWhereWithoutColorInput = {
-  where?: Prisma.ColorsOnSkisWhereInput
+export type ColorsOnSkisUpsertWithWhereUniqueWithoutColorInput = {
+  where: Prisma.ColorsOnSkisWhereUniqueInput
+  update: Prisma.XOR<Prisma.ColorsOnSkisUpdateWithoutColorInput, Prisma.ColorsOnSkisUncheckedUpdateWithoutColorInput>
+  create: Prisma.XOR<Prisma.ColorsOnSkisCreateWithoutColorInput, Prisma.ColorsOnSkisUncheckedCreateWithoutColorInput>
+}
+
+export type ColorsOnSkisUpdateWithWhereUniqueWithoutColorInput = {
+  where: Prisma.ColorsOnSkisWhereUniqueInput
   data: Prisma.XOR<Prisma.ColorsOnSkisUpdateWithoutColorInput, Prisma.ColorsOnSkisUncheckedUpdateWithoutColorInput>
 }
 
-export type ColorsOnSkisUpdateWithoutColorInput = {
-  ski?: Prisma.skisUpdateOneRequiredWithoutColorsNestedInput
+export type ColorsOnSkisUpdateManyWithWhereWithoutColorInput = {
+  where: Prisma.ColorsOnSkisScalarWhereInput
+  data: Prisma.XOR<Prisma.ColorsOnSkisUpdateManyMutationInput, Prisma.ColorsOnSkisUncheckedUpdateManyWithoutColorInput>
 }
 
-export type ColorsOnSkisUncheckedUpdateWithoutColorInput = {
-  skiId?: Prisma.IntFieldUpdateOperationsInput | number
+export type ColorsOnSkisScalarWhereInput = {
+  AND?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
+  OR?: Prisma.ColorsOnSkisScalarWhereInput[]
+  NOT?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
+  colorId?: Prisma.IntFilter<"ColorsOnSkis"> | number
+  skiId?: Prisma.IntFilter<"ColorsOnSkis"> | number
 }
 
 export type ColorsOnSkisCreateWithoutSkiInput = {
@@ -455,12 +470,20 @@ export type ColorsOnSkisUpdateManyWithWhereWithoutSkiInput = {
   data: Prisma.XOR<Prisma.ColorsOnSkisUpdateManyMutationInput, Prisma.ColorsOnSkisUncheckedUpdateManyWithoutSkiInput>
 }
 
-export type ColorsOnSkisScalarWhereInput = {
-  AND?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
-  OR?: Prisma.ColorsOnSkisScalarWhereInput[]
-  NOT?: Prisma.ColorsOnSkisScalarWhereInput | Prisma.ColorsOnSkisScalarWhereInput[]
-  colorId?: Prisma.IntFilter<"ColorsOnSkis"> | number
-  skiId?: Prisma.IntFilter<"ColorsOnSkis"> | number
+export type ColorsOnSkisCreateManyColorInput = {
+  skiId: number
+}
+
+export type ColorsOnSkisUpdateWithoutColorInput = {
+  ski?: Prisma.skisUpdateOneRequiredWithoutColorsNestedInput
+}
+
+export type ColorsOnSkisUncheckedUpdateWithoutColorInput = {
+  skiId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type ColorsOnSkisUncheckedUpdateManyWithoutColorInput = {
+  skiId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ColorsOnSkisCreateManySkiInput = {

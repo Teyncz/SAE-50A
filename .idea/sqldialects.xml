@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$USER_HOME$/Downloads/brand.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/categories.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/categories_on_skis.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/colors.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/colors_on_skis.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/saisons.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/skis.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/skis_images.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/skis_lengths.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/specifications.sql" dialect="MySQL" />
+  </component>
+</project>

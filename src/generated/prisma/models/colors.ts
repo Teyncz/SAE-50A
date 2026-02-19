@@ -200,14 +200,14 @@ export type colorsWhereInput = {
   id?: Prisma.IntFilter<"colors"> | number
   name?: Prisma.StringFilter<"colors"> | string
   hexaCode?: Prisma.StringFilter<"colors"> | string
-  skis?: Prisma.XOR<Prisma.ColorsOnSkisNullableScalarRelationFilter, Prisma.ColorsOnSkisWhereInput> | null
+  skis?: Prisma.ColorsOnSkisListRelationFilter
 }
 
 export type colorsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   hexaCode?: Prisma.SortOrder
-  skis?: Prisma.ColorsOnSkisOrderByWithRelationInput
+  skis?: Prisma.ColorsOnSkisOrderByRelationAggregateInput
   _relevance?: Prisma.colorsOrderByRelevanceInput
 }
 
@@ -218,7 +218,7 @@ export type colorsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.colorsWhereInput | Prisma.colorsWhereInput[]
   name?: Prisma.StringFilter<"colors"> | string
   hexaCode?: Prisma.StringFilter<"colors"> | string
-  skis?: Prisma.XOR<Prisma.ColorsOnSkisNullableScalarRelationFilter, Prisma.ColorsOnSkisWhereInput> | null
+  skis?: Prisma.ColorsOnSkisListRelationFilter
 }, "id">
 
 export type colorsOrderByWithAggregationInput = {
@@ -244,27 +244,27 @@ export type colorsScalarWhereWithAggregatesInput = {
 export type colorsCreateInput = {
   name: string
   hexaCode: string
-  skis?: Prisma.ColorsOnSkisCreateNestedOneWithoutColorInput
+  skis?: Prisma.ColorsOnSkisCreateNestedManyWithoutColorInput
 }
 
 export type colorsUncheckedCreateInput = {
   id?: number
   name: string
   hexaCode: string
-  skis?: Prisma.ColorsOnSkisUncheckedCreateNestedOneWithoutColorInput
+  skis?: Prisma.ColorsOnSkisUncheckedCreateNestedManyWithoutColorInput
 }
 
 export type colorsUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   hexaCode?: Prisma.StringFieldUpdateOperationsInput | string
-  skis?: Prisma.ColorsOnSkisUpdateOneWithoutColorNestedInput
+  skis?: Prisma.ColorsOnSkisUpdateManyWithoutColorNestedInput
 }
 
 export type colorsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   hexaCode?: Prisma.StringFieldUpdateOperationsInput | string
-  skis?: Prisma.ColorsOnSkisUncheckedUpdateOneWithoutColorNestedInput
+  skis?: Prisma.ColorsOnSkisUncheckedUpdateManyWithoutColorNestedInput
 }
 
 export type colorsCreateManyInput = {
@@ -374,12 +374,42 @@ export type colorsUncheckedUpdateWithoutSkisInput = {
 }
 
 
+/**
+ * Count Type ColorsCountOutputType
+ */
+
+export type ColorsCountOutputType = {
+  skis: number
+}
+
+export type ColorsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  skis?: boolean | ColorsCountOutputTypeCountSkisArgs
+}
+
+/**
+ * ColorsCountOutputType without action
+ */
+export type ColorsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ColorsCountOutputType
+   */
+  select?: Prisma.ColorsCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ColorsCountOutputType without action
+ */
+export type ColorsCountOutputTypeCountSkisArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ColorsOnSkisWhereInput
+}
+
 
 export type colorsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   hexaCode?: boolean
   skis?: boolean | Prisma.colors$skisArgs<ExtArgs>
+  _count?: boolean | Prisma.ColorsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["colors"]>
 
 
@@ -393,12 +423,13 @@ export type colorsSelectScalar = {
 export type colorsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "hexaCode", ExtArgs["result"]["colors"]>
 export type colorsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   skis?: boolean | Prisma.colors$skisArgs<ExtArgs>
+  _count?: boolean | Prisma.ColorsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $colorsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "colors"
   objects: {
-    skis: Prisma.$ColorsOnSkisPayload<ExtArgs> | null
+    skis: Prisma.$ColorsOnSkisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -744,7 +775,7 @@ readonly fields: colorsFieldRefs;
  */
 export interface Prisma__colorsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  skis<T extends Prisma.colors$skisArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.colors$skisArgs<ExtArgs>>): Prisma.Prisma__ColorsOnSkisClient<runtime.Types.Result.GetResult<Prisma.$ColorsOnSkisPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  skis<T extends Prisma.colors$skisArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.colors$skisArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ColorsOnSkisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1136,6 +1167,11 @@ export type colors$skisArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   include?: Prisma.ColorsOnSkisInclude<ExtArgs> | null
   where?: Prisma.ColorsOnSkisWhereInput
+  orderBy?: Prisma.ColorsOnSkisOrderByWithRelationInput | Prisma.ColorsOnSkisOrderByWithRelationInput[]
+  cursor?: Prisma.ColorsOnSkisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ColorsOnSkisScalarFieldEnum | Prisma.ColorsOnSkisScalarFieldEnum[]
 }
 
 /**
